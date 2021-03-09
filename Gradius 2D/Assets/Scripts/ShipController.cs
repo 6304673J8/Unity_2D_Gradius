@@ -6,18 +6,18 @@ public class ShipController : MonoBehaviour
 {
     public enum Direction { NONE, UP, DOWN, LEFT, RIGHT };
     private Direction shipDirection = Direction.NONE;
+    
+    public float baseSpeed = 0.3f;
+    private float currentSpeedH = 0.0f;
+    private float currentSpeedV = 0.0f;
 
     private KeyCode upButton = KeyCode.W;
     private KeyCode downButton = KeyCode.S;
     private KeyCode leftButton = KeyCode.A;
     private KeyCode rightButton = KeyCode.D;
 
-    public float baseSpeed = 0.3f;
-    private float currentSpeedV = 0.0f;
-    private float currentSpeedH = 0.0f;
     private Rigidbody2D rigidBody;
 
-    // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -48,6 +48,7 @@ public class ShipController : MonoBehaviour
     private void FixedUpdate()
     {
         float delta = Time.fixedDeltaTime * 1000;
+
         currentSpeedV = 0;
         currentSpeedH = 0;
         switch (shipDirection) {
@@ -65,6 +66,6 @@ public class ShipController : MonoBehaviour
                 currentSpeedH = -baseSpeed;
                 break;
         }
-        rigidBody.velocity = new Vector2(0, currentSpeedV * delta);
+        rigidBody.velocity = new Vector2(currentSpeedH, currentSpeedV) * delta;
     }
 }
