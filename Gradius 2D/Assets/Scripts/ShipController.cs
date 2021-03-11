@@ -8,8 +8,8 @@ public class ShipController : MonoBehaviour
     private Direction shipDirection = Direction.NONE;
     
     public float baseSpeed = 0.3f;
-    private float currentSpeedH = 0.0f;
-    private float currentSpeedV = 0.0f;
+    public float currentSpeedH = 0.0f;
+    public float currentSpeedV = 0.0f;
 
     private KeyCode upButton = KeyCode.W;
     private KeyCode downButton = KeyCode.S;
