@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Globulae : MonoBehaviour
+public class Follower : MonoBehaviour
 {
-    public GameObject shipObject;
-
-
     public Transform player;
     public float moveSpeed = 1f;
     public float range;
@@ -15,22 +12,21 @@ public class Globulae : MonoBehaviour
 
     void Start()
     {
-        shipObject = GameObject.FindGameObjectWithTag("Ship");
         enemyrb = this.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        Vector3 direction = player.position - transform.position ;
-        direction.Normalize();
+        Vector3 direction = player.position - transform.position;
+        //direction.Normalize();
         movement = direction;
 
         //Comprobar la distancia entre el enemigo y el jugador
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer < range)
+        /*if (distanceToPlayer < range)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 
     private void FixedUpdate()
