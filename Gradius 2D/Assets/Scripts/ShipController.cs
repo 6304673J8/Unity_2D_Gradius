@@ -16,6 +16,24 @@ public class ShipController : MonoBehaviour
     private KeyCode leftButton = KeyCode.A;
     private KeyCode rightButton = KeyCode.D;
 
+    private int lives = 3;
+
+    //bullets
+    //physics
+    public GameObject bulletPrefab;
+
+    public float bulletPosition;
+    public float offsetBullet;
+    //logic
+    public float fireRate;
+    public float cooldownFire = 0;
+    private float secondsToNextFire = 1;
+    private float nextFire;
+
+    int maxBullets = 5;
+    int bullets;
+
+    //Ship
     private Rigidbody2D rigidBody;
 
     void Start()
@@ -26,6 +44,8 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float delta = Time.deltaTime * fireRate;
+
         shipDirection = Direction.NONE;
         if (Input.GetKey(upButton))
         {
@@ -42,6 +62,35 @@ public class ShipController : MonoBehaviour
         else if (Input.GetKey(rightButton))
         {
             shipDirection = Direction.RIGHT;
+        }
+
+        //Shoot logic
+        if (cooldownFire == 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            ShootingLogic();
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.Space) && Time.time > nextFire && fireRate > 0)
+            {
+                if (bullets > 0)
+                {
+                    nextFire = Time.time + fireRate * 2;
+                    ShootingLogic();
+                    bullets --;
+                }
+                if (bullets == 0)
+                {
+                    if (cooldownFire > Time.time)
+                    {
+                        cooldownFire = Time.time + secondsToNextFire;
+                    }
+                }
+            }
+        }
+        if (Time.time > cooldownFire && bullets == 0)
+        {   
+            bullets = maxBullets;
         }
     }
 
@@ -67,5 +116,13 @@ public class ShipController : MonoBehaviour
                 break;
         }
         rigidBody.velocity = new Vector2(currentSpeedH, currentSpeedV) * delta;
+    }
+
+    public void ShootingLogic()
+    {
+        Vector2 pos = transform.right * offsetBullet + transform.position;
+        
+        GameObject bullet = Instantiate(bulletPrefab, pos, transform.rotation);
+        Destroy(bullet, 2);
     }
 }

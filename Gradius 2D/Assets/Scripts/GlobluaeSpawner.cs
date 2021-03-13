@@ -5,14 +5,20 @@ using UnityEngine;
 public class GlobluaeSpawner : MonoBehaviour
 {
     [SerializeField]
-    private Globulae globulaePrefab;
+    public GameObject[] Globulaes;
+    public Vector3 pos;
 
-    void Update()
+    public float spawnTime = 3f;
+    public float spawnDelay = 1f;
+
+    void Start()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Globulae newGlobulae = Instantiate(globulaePrefab);
-            newGlobulae.transform.position = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
-        }    
+        InvokeRepeating("Spawn", spawnDelay, spawnTime);
+    }
+    void Spawn()
+    {
+        //Instantiate a random enemy.
+        int enemyIndex = Random.Range(0, Globulaes.Length);
+        Instantiate(Globulaes[enemyIndex], pos, transform.rotation);
     }
 }
