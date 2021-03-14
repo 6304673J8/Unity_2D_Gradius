@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5397496030822641930}
   - component: {fileID: 5397496030822641931}
   - component: {fileID: 5397496030822641928}
-  - component: {fileID: 5397496030822641929}
+  - component: {fileID: -228084454241359810}
   m_Layer: 0
-  m_Name: LaserBeam
-  m_TagString: Laser
+  m_Name: EnemyLaserPrefab
+  m_TagString: EnemyLaser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5397496030822641934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6b0c11c5c9284e943afe59cc7b4874e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da1a9c706da55304288659f20df66f5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,23 +115,23 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.065917015, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.65625, y: 0.8125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.15, y: 0.39}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5397496030822641929
+--- !u!114 &-228084454241359810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5397496030822641934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79d72c1127a9784db8543e334c33707, type: 3}
+  m_Script: {fileID: 11500000, guid: e74d575fc9696954ba565a4ac025404c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 15
+  speed: 42

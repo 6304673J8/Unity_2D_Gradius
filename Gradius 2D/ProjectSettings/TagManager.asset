@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ship
+  - Laser
+  - EnemyLaser
+  - Enemy
+  - ToFollow
+  - Activator
   layers:
   - Default
   - TransparentFX

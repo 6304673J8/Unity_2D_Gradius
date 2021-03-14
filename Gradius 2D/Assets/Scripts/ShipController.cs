@@ -16,7 +16,7 @@ public class ShipController : MonoBehaviour
     private KeyCode leftButton = KeyCode.A;
     private KeyCode rightButton = KeyCode.D;
 
-    private int lives = 3;
+    public int hp = 3;
 
     //bullets
     //physics
@@ -27,7 +27,7 @@ public class ShipController : MonoBehaviour
     //logic
     public float fireRate;
     public float cooldownFire = 0;
-    private float secondsToNextFire = 1;
+    private float secondsToNextFire = 3;
     private float nextFire;
 
     int maxBullets = 5;
@@ -41,7 +41,6 @@ public class ShipController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float delta = Time.deltaTime * fireRate;

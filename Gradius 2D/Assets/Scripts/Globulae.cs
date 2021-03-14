@@ -20,9 +20,6 @@ public class Globulae : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Ship").transform.position, moveSpeed * Time.deltaTime);
-
-        //Vector3 direction = player.position - transform.position ;
-        //direction.Normalize();
         movement = transform.position;
 
         //Comprobar la distancia entre el enemigo y el jugador
@@ -41,5 +38,19 @@ public class Globulae : MonoBehaviour
     void MoveEnemy(Vector2 direction)
     {
         enemyrb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Laser")
+        {
+            Destroy(gameObject);
+        }
+        if (col.gameObject.tag == "Ship")
+        {
+            col.gameObject.GetComponent<ShipController>().hp -= 1;
+            Destroy(gameObject);
+            //Destroy(col.gameObject);
+        }
     }
 }
