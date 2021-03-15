@@ -28,21 +28,7 @@ public class BulletSetup : MonoBehaviour
         }
     }
 }
-        /*private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.tag == "Map")
-            {
-                speed = 0;
-                hit = true;
-                animator.SetTrigger(HitParamID);
-            }
-            if (collision.gameObject.tag == "Player")
-            {
-                speed = 0;
-                hit = true;
-                animator.SetTrigger(HitParamID);
-            }
-
+        /*
             if (collision.gameObject.tag == "Enemy")
             {
                 speed = 0;

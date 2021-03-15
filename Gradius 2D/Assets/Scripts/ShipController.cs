@@ -16,7 +16,8 @@ public class ShipController : MonoBehaviour
     private KeyCode leftButton = KeyCode.A;
     private KeyCode rightButton = KeyCode.D;
 
-    public int hp = 3;
+    public int hp;
+    private int maxHp = 3;
 
     //bullets
     //physics
@@ -38,6 +39,7 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
+        hp = maxHp;
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -74,7 +76,7 @@ public class ShipController : MonoBehaviour
             {
                 if (bullets > 0)
                 {
-                    nextFire = Time.time + fireRate * 2;
+                    nextFire = Time.time + fireRate;
                     ShootingLogic();
                     bullets --;
                 }
@@ -90,6 +92,9 @@ public class ShipController : MonoBehaviour
         if (Time.time > cooldownFire && bullets == 0)
         {   
             bullets = maxBullets;
+        }
+        if (hp < 1) {
+            Destroy(this);
         }
     }
 
@@ -123,5 +128,15 @@ public class ShipController : MonoBehaviour
         
         GameObject bullet = Instantiate(bulletPrefab, pos, transform.rotation);
         Destroy(bullet, 2);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Scenario")
+        {
+            //Adds 1 to the num of times it hitd a wall
+            GameManager.Instance.hitScore++;
+            Debug.Log("Boom: " + GameManager.Instance.hitScore);
+        }
     }
 }

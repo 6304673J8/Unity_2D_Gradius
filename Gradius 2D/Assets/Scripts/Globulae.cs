@@ -13,7 +13,6 @@ public class Globulae : MonoBehaviour
     private Vector2 movement;
     void Start()
     {
-        shipObject = GameObject.FindGameObjectWithTag("Ship");
         enemyrb = this.GetComponent<Rigidbody2D>();
     }
 
@@ -40,11 +39,14 @@ public class Globulae : MonoBehaviour
         enemyrb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Laser")
         {
+            GameManager.Instance.score += 25;
+            Debug.Log("Boom: " + GameManager.Instance.score);
             Destroy(gameObject);
+            Destroy(col.gameObject);
         }
         if (col.gameObject.tag == "Ship")
         {

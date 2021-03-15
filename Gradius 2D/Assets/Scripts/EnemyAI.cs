@@ -54,10 +54,22 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        
+
         if (col.CompareTag("ToFollow"))
         {
             Destroy(gameObject);
+        }
+        if (col.CompareTag("Laser")) {
+            GameManager.Instance.score += 75;
+            Debug.Log("Boom: " + GameManager.Instance.score);
+            Destroy(gameObject);
+            Destroy(col.gameObject);
+        }
+        if (col.gameObject.tag == "Ship")
+        {
+            col.gameObject.GetComponent<ShipController>().hp -= 1;
+            Destroy(gameObject);
+            //Destroy(col.gameObject);
         }
     }
 }
