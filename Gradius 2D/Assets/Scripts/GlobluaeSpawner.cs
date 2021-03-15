@@ -11,6 +11,10 @@ public class GlobluaeSpawner : MonoBehaviour
     public float spawnTime = 3f;
     public float spawnDelay = 1f;
 
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
     void Start()
     {
         InvokeRepeating("Spawn", spawnDelay, spawnTime);
